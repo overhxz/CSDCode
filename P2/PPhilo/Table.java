@@ -10,6 +10,7 @@ public interface Table {
     void eat(int id);
     void dropR(int id);
     void dropL(int id);
+    void dropLR(int id);
     void end(int id);
     void takeLR(int id) throws InterruptedException;
     void enter(int id) throws InterruptedException;

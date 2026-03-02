@@ -2,4 +2,10 @@
 comment0.target=BothOrNonePhilo
 comment1.params=id\ cycles\ delay\ table
 comment1.target=BothOrNonePhilo(int,\ int,\ int,\ Table)
-numComments=2
+comment2.params=
+comment2.target=void\ delay()
+comment3.params=
+comment3.target=void\ randomDelay()
+comment4.params=
+comment4.target=void\ run()
+numComments=5

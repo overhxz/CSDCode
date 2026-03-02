@@ -41,14 +41,14 @@ public class PPhilo extends JPanel implements ActionListener {
                 else philo[i]=new LefthandedPhilo(i,cycles,delay,t);
             break;
         case 3: 
-            System.out.println("Both or None.- TO BE IMPLEMENTED");
-            t = new RegularTable(sman);
-            for (i=0; i<5; i++) philo[i]=new Philo(i,cycles,delay,t);
+            System.out.println("Both or None.");
+            t = new BothOrNoneTable(sman);
+            for (i=0; i<5; i++) philo[i]=new BothOrNonePhilo(i,cycles,delay,t);
             break;
         case 4: 
             System.out.println("Limited capacity Dining Room.- TO BE IMPLEMENTED");
-            t = new RegularTable(sman);
-            for (i=0; i<5; i++) philo[i]=new Philo(i,cycles,delay,t);
+            t = new LimitedTable(sman);
+            for (i=0; i<5; i++) philo[i]=new LimitedPhilo(i,cycles,delay,t);
             break;
         }
         for (i=0; i<5; i++) philo[i].start();

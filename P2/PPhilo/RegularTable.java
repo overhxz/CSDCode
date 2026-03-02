@@ -19,6 +19,7 @@ public class RegularTable implements Table {    //no prevention
     public synchronized void eat(int id)   {state.eat(id);}
     public synchronized void dropR(int id) {state.dropR(id); notifyAll();}
     public synchronized void dropL(int id) {state.dropL(id); notifyAll();}
+    public synchronized void dropLR(int id) {illegal("RegularTable.dropLR");}
     public synchronized void end(int id)   {state.end(id);}
     public synchronized void takeLR(int id) throws InterruptedException{illegal("RegularTable.takeLR");}
     public synchronized void enter(int id) throws InterruptedException {illegal("RegularTable.enter");}
