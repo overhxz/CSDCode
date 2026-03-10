@@ -29,7 +29,7 @@ public class Ants
         switch (readArg(args,0,0,0,3)) {
         case 0: t=new Terrain0(T,A,M,"0.- Basic monitor:"); break;
         case 1: t=new Terrain1(T,A,M,"1.- General monitor, 1 cond ."); break; 
-        case 2: t=new Terrain0(T,A,M,"2.- GMonitor, 1 cond/cell:"); break; // must be Terrain2 TO BE IMPLEMENTED
+        case 2: t=new Terrain2(T,A,M,"2.- GMonitor, 1 cond/cell:"); break;
         case 3: t=new Terrain0(T,A,M,"3.- GMonitor, 1 cond/cell, no deadlock:");        // must be Terrain3 TO BE IMPLEMENTED
         }
         for (int i=0; i<A; i++) new Ant(i,t,M).start();

@@ -1,3 +1,4 @@
+
 import java.util.concurrent.* ;
 import java.util.concurrent.locks.* ;
 /**
@@ -8,17 +9,21 @@ import java.util.concurrent.locks.* ;
  */
 
 
-public class Terrain1 implements Terrain {
+public class Terrain3 implements Terrain {
     private Viewer v;
     ReentrantLock lock;
-    Condition c;
-    public  Terrain1 (int t, int ants, int movs, String msg) {
+    Condition[][] c;
+    public  Terrain3 (int t, int ants, int movs, String msg) {
         v=new Viewer(t,ants,movs,msg);
         
         lock=new ReentrantLock();
-        
-        c = lock.newCondition();
-      
+        c = new Condition[t][t];
+         for(int i = 0; i< t ; i++){
+             for(int j = 0; j< t ; j++){
+                c[i][j] = lock.newCondition();
+                
+            }
+        }
     }
     
     /** en hi y bye hace falta avisar a todos */
@@ -36,7 +41,8 @@ public class Terrain1 implements Terrain {
         lock.lock();
         try{ 
             v.bye(a);
-            c.signalAll(); //en vez de NotifyAll()
+            Pos pos = v.getPos(a);
+            c[pos.x][pos.y].signalAll(); //en vez de NotifyAll()
         } finally {
             lock.unlock();
         }
@@ -49,14 +55,15 @@ public class Terrain1 implements Terrain {
         try{
             v.turn(a); 
             Pos dest = v.dest(a); 
+            Pos pos = v.getPos(a);
             
             while (v.occupied(dest)) {
-                c.await(); //sustituido por wait
+                c[dest.x][dest.y].await(); //sustituido por wait
                 v.retry(a);
             }
             
             v.go(a); 
-            c.signalAll();
+            c[dest.x][dest.y].signalAll();
         } finally {
             lock.unlock();
         }
